@@ -1,31 +1,48 @@
-html {
-  height: 100%;
-  color: black;
+* {
+  box-sizing: inherit;
 }
-
-#root {
-  margin: 0 auto;
-  height: 100%;
-  width: 100%;
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  background: #8bb0d7; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #f6baa6,
+    #766da2
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #f6baa6,
+    #766da2
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 body {
-  height: 100%;
-  width: 100%;
+  margin: auto;
 }
 
 .App {
-  background-color: white;
-  width: 90%;
-  height: 90%;
+  -webkit-text-size-adjust: none;
+  color: #777777;
+  box-sizing: inherit;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  width: 75em;
+  margin: 0 auto;
+  min-height: 100vh;
+  max-width: 100%;
+
   display: flex;
   flex-direction: column;
-  margin: auto;
+  align-items: center;
+  justify-content: center;
 }
 .Navbar {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1em;
 }
 header {
   box-sizing: border-box;
@@ -37,26 +54,34 @@ header {
 
 .Outer-container {
   margin: 10px;
+  height: 100%;
+  width: 100%;
 }
 
 .Main-container {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  grid-template-areas: "content sidebar";
-  flex-grow: 1;
-  height: 100%;
+  border: 1px solid white;
+  padding: 1.25em;
+  border-radius: 10px;
 }
 .Content {
   background-color: rgb(10, 120, 194);
-  width: 100%;
   grid-area: content;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  -webkit-text-size-adjust: none;
+  color: #777777;
+  box-sizing: inherit;
+  border: 0;
+  font: inherit;
+  display: block;
+  position: relative;
+  padding: 1.5em;
+  width: 100%;
 }
 .Sidebar {
   grid-area: sidebar;
-  background: black;
+  background: rgb(245, 231, 223);
+  padding: 0.75em;
 }
 .Image-Container {
   display: grid;
@@ -73,6 +98,75 @@ header {
 }
 img {
   width: 100%;
+}
+.Translate-Widget {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 10px 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.8px);
+  -webkit-backdrop-filter: blur(6.8px);
+}
+.Feature-Header {
+  -webkit-text-size-adjust: none;
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0.5rem;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  font-weight: 400;
+  color: #363636;
+  font-size: 1.8em;
+  letter-spacing: -0.015em;
+  text-align: left;
+}
+textarea {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 300;
+  color: #777777;
+  font-size: 1.2rem;
+  line-height: 1.75em;
+  background: #f4f4f4;
+  width: 95%;
+  resize: none;
+  width: 100%;
+
+  min-height: 10em;
+}
+
+input {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 300;
+  color: #777777;
+  font-size: 1.2rem;
+
+  border: 0;
+  border-radius: 3px;
+  background: #d5d3d3;
+
+  width: 100%;
+}
+
+input {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 300;
+  color: #777777;
+  font-size: 1.2rem;
+
+  border: 0;
+  border-radius: 3px;
+  background: #d5d3d3;
+
+  width: 100%;
+}
+
+select {
+  font-size: 0.9rem;
 }
 
 /* input styling */

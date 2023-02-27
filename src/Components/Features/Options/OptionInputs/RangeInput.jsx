@@ -1,5 +1,5 @@
 import React from "react";
-import { useOptionsStore } from "../../../../store/api";
+import { useOptionsStore } from "../../../../store/store";
 
 const settingName = {
   max_tokens: {
@@ -42,6 +42,7 @@ export const RangeInput = ({ optionLabel, settingLabel, steps, max }) => {
         type="range"
         id="rangeParam"
         max={max}
+        defaultValue="0"
         step={steps}
         onChange={(e) => inputToSettingsConverter(e.target.value)}
       />

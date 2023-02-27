@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
-import { useAPIStore } from "../../../store/api";
+import { useAPIStore } from "../../../store/store";
 
 const ImageGen = () => {
   const [textPrompt, setPrompt] = useState("");
@@ -25,7 +25,8 @@ const ImageGen = () => {
   });
 
   return (
-    <div className="Image-gen">
+    <div className="Image-gen Container">
+      <div className="Feature-Header">Image Generator</div>
       <div>
         <input onChange={(e) => setPrompt(e.target.value)} value={textPrompt} />
         <button onClick={(e) => generateImage(e, textPrompt)}>

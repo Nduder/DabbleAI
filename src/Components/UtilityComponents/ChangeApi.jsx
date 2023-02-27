@@ -1,11 +1,11 @@
 // import { apiStore } from "../Hooks/State/api";
-import { useAPIStore } from "../../store/api";
+import { useAPIStore } from "../../store/store";
 import { useState } from "react";
+
 export const ApiChanger = () => {
   let [apiInput, setApiInput] = useState("");
 
-  const apiKey = useAPIStore((state) => state.apiKey);
-  const increasePopulation = useAPIStore((state) => state.changeApiKey);
+  const { apiKey, changeApiKey } = useAPIStore((state) => state);
 
   const changeApiInput = (key) => {
     setApiInput(key);
@@ -18,7 +18,9 @@ export const ApiChanger = () => {
         value={apiInput}
         placeholder={apiKey}
       />
-      <button onClick={() => increasePopulation(apiInput)}>Change Key</button>
+      <button onClick={() => changeApiKey(apiInput, "apiKey")}>
+        Change Key
+      </button>
     </div>
   );
 };

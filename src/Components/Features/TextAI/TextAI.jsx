@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Configuration, OpenAIApi } from "openai";
-import { useAPIStore } from "../../../store/api";
-import { useOptionsStore } from "../../../store/api";
+
+import { useAPIStore } from "../../../store/store";
+import { useOptionsStore } from "../../../store/store";
+import { generateResponse, openAiClient, sendPrompt } from "./textAIApiCall";
 
 export const TextAI = () => {
   const [returnText, setReturnText] = useState("");
@@ -10,26 +11,25 @@ export const TextAI = () => {
   );
 
   const currentApiKey = useAPIStore((state) => state.apiKey);
-  const configuration = new Configuration({
-    apiKey: currentApiKey,
-  });
-  const openai = new OpenAIApi(configuration);
-  const textParameters = useOptionsStore((state) => state.textParameters);
-  console.log(textParameters.prompt);
-  const SendPrompt = async () => {
-    const response = await openai.createCompletion(textParameters);
 
-    setReturnText(response.data.choices[0].text);
-  };
+  const textParameters = useOptionsStore((state) => state.textParameters);
+
   return (
-    <div>
-      <div>{returnText}</div>
-      <input
+    <div className="Container">
+      <textarea
         onChange={(e) => changeTextPrompt(e.target.value, "prompt")}
         placeholder="insert text here"
         value={textParameters.prompt}
       />
-      <button onClick={(e) => SendPrompt()}>Generate Text</button>
+      <div>{returnText}</div>
+
+      <button
+        onClick={(e) =>
+          generateResponse(currentApiKey, textParameters, setReturnText)
+        }
+      >
+        Generate Text
+      </button>
     </div>
   );
 };

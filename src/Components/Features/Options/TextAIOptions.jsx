@@ -1,9 +1,6 @@
 import { RangeInput } from "./OptionInputs/RangeInput";
-import { useOptionsStore } from "../../../store/api";
 
 export const TextGenOptions = () => {
-  const textParams = useOptionsStore((state) => state.textParameters);
-
   return (
     <div className="Text-Gen-Options">
       <RangeInput

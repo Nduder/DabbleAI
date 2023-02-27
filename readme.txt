@@ -1,1 +1,1 @@
-test?dfdsdfsd
+Barebones platform for OpenAI APIs (Davinci and Dall-e)
