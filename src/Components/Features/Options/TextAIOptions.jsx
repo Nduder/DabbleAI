@@ -2,7 +2,7 @@ import { RangeInput } from "./OptionInputs/RangeInput";
 
 export const TextGenOptions = () => {
   return (
-    <div className="Text-Gen-Options">
+    <div className="text-gen-options">
       <RangeInput
         optionLabel="Length"
         settingLabel={"max_tokens"}
@@ -18,21 +18,3 @@ export const TextGenOptions = () => {
     </div>
   );
 };
-
-{
-  /* <input
-        placeholder="tokens"
-        onChange={(e) =>
-          changeTextPrompt(parseInt(e.target.value), "max_tokens")
-        }
-      /> */
-}
-// { model: "text-davinci-003",
-// prompt: textPrompt,
-// max_tokens: 20,
-// temperature: 0,
-// top_p: 1,
-// n: 1,
-// stream: false,
-// logprobs: null,
-// stop: ["input:"]}

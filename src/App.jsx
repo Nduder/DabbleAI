@@ -3,30 +3,31 @@ import ImageGen from "./Components/Features/ImageGen/ImageGen";
 import { useState } from "react";
 import { Bar } from "./Components/Containers/Bar";
 import { TextAI } from "./Components/Features/TextAI/TextAI";
-import { OptionsBar } from "./Components/Containers/OptionsContainer";
+
 import { TranslateWidget } from "./Components/Features/Translator/TranslationWidget";
+import { TextGenOptions } from "./Components/Features/Options/TextAIOptions.jsx";
+import { NavBar } from "./Components/UtilityComponents/NavBar";
+import { useFeatureSelect } from "./store/store";
 
 function App() {
-  const [currentFeatureIdx, setCurrentFeatureIdx] = useState(0);
-  const textAndImage = [<TextAI />, <ImageGen />];
-  const currentFeature = textAndImage[currentFeatureIdx];
-
-  const changeFeatureOnClick = () => {
-    if (currentFeatureIdx >= textAndImage.length - 1) setCurrentFeatureIdx(0);
-    else setCurrentFeatureIdx(currentFeatureIdx + 1);
+  const textAndImage = {
+    textGen: <TextAI />,
+    imageGen: <ImageGen />,
   };
+
+  const currentFeature = useFeatureSelect((state) => state.currentFeature);
+  const currentFeatureComponent = textAndImage[currentFeature];
+
   return (
     <div className="App">
       <div className="Outer-container">
         <Bar />
-        <button onClick={(e) => changeFeatureOnClick()}>Change feature</button>
+
         <TranslateWidget />
+        <NavBar />
         <div className="Main-container">
-          <div className="Content">{currentFeature}</div>
-          <div className="Sidebar">
-            Sidebar
-            <OptionsBar />
-          </div>
+          {currentFeatureComponent}
+          <TextGenOptions />
         </div>
       </div>
     </div>

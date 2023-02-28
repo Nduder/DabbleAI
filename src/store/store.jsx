@@ -37,3 +37,10 @@ export const useTranslatorStore = create((set) => ({
   changeText: (text, inputTextOrOutputText) =>
     set((state) => ({ [inputTextOrOutputText]: text })),
 }));
+
+export const useFeatureSelect = create((set) => ({
+  currentFeature: "textGen",
+  changeCurrentFeature: (selectedFeature) => {
+    set((state) => ({ currentFeature: selectedFeature }));
+  },
+}));
