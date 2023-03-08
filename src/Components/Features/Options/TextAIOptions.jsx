@@ -10,7 +10,7 @@ export const TextGenOptions = () => {
         max="3"
       />
       <RangeInput
-        optionLabel="Response Variability"
+        optionLabel="Variability"
         settingLabel={"temperature"}
         steps="25"
         max="100"

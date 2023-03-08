@@ -32,20 +32,25 @@ export const RangeInput = ({ optionLabel, settingLabel, steps, max }) => {
       else if (value == 3) changeParameters(1000, settingLabel);
     }
   };
-  console.log(parameter.max_tokens);
+  const currentSettingDescription =
+    settingName[settingLabel][parameter[settingLabel]];
+
   return (
-    <React.Fragment>
-      <label htmlFor="rangeParam">
-        {optionLabel} : {settingName[settingLabel][parameter[settingLabel]]}
-      </label>
-      <input
-        type="range"
-        id="rangeParam"
-        max={max}
-        defaultValue="0"
-        step={steps}
-        onChange={(e) => inputToSettingsConverter(e.target.value)}
-      />
-    </React.Fragment>
+    <div className="range-sliders">
+      <label htmlFor="rangeParam">{optionLabel}</label>
+      <div className="range-description container">
+        <input
+          type="range"
+          id="rangeParam"
+          max={max}
+          defaultValue="0"
+          step={steps}
+          onChange={(e) => inputToSettingsConverter(e.target.value)}
+        />
+        <div className="current-setting-description">
+          {currentSettingDescription}
+        </div>
+      </div>
+    </div>
   );
 };

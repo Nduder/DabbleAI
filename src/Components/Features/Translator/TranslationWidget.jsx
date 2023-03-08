@@ -30,7 +30,7 @@ export const TranslateWidget = () => {
   console.log(prompt, inputLanguage, outputLanguage, translatedText);
 
   return (
-    <div className="Translate-Widget">
+    <div className="translate-widget">
       <div className="inputLanguage selectbox">
         <SelectLanguage
           inOrOut={"inputLanguage"}

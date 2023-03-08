@@ -1,39 +1,23 @@
-import { useState } from "react";
-import { Configuration, OpenAIApi } from "openai";
-import { useAPIStore } from "../../../store/store";
+import { useOptionsStore } from "../../../store/store";
 
 const ImageGen = () => {
-  const [textPrompt, setPrompt] = useState("");
-  const [imageArray, setImageArray] = useState([]);
-  const currentApiKey = useAPIStore((state) => state.apiKey);
-  const configuration = new Configuration({
-    apiKey: currentApiKey,
-  });
-  const openai = new OpenAIApi(configuration);
+  const { imageParameters, changeImageParameters, imageLinksArray } =
+    useOptionsStore((state) => state);
   //
-  const generateImage = async (event, prompt) => {
-    const response = await openai.createImage({
-      prompt: prompt,
-      n: 1,
-      size: "1024x1024",
-    });
-    setImageArray(response.data.data);
-  };
-  //
-  const imageElements = imageArray.map((ele) => {
-    return <img src={ele.url} alt="Italian Trulli"></img>;
+  const imageElements = imageLinksArray.map((ele) => {
+    return <img src={ele.url} alt={imageParameters.prompt + "#1"}></img>;
   });
-
   return (
-    <div className="Image-gen Container">
-      <div className="Feature-Header">Image Generator</div>
+    <div className="imageGen feature-container">
+      <div className="feature-header">Image Generator</div>
       <div>
-        <input onChange={(e) => setPrompt(e.target.value)} value={textPrompt} />
-        <button onClick={(e) => generateImage(e, textPrompt)}>
-          Generate Picture
-        </button>
+        <textarea
+          onChange={(e) => changeImageParameters(e.target.value)}
+          value={imageParameters.prompt}
+          placeholder="What picture do you want me to create? A painting in the same style as 'Starry Night' about a grassy meadow with a california poppies and the skyline of the Bay Area? A dog driving a car? "
+        />
       </div>
-      <div className="Image-Container">{imageElements}</div>
+      <div className="images-container">{imageElements}</div>
     </div>
   );
 };

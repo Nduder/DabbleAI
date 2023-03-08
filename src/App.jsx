@@ -1,35 +1,37 @@
 import "./App.css";
 import ImageGen from "./Components/Features/ImageGen/ImageGen";
-import { useState } from "react";
-import { Bar } from "./Components/Containers/Bar";
+
 import { TextAI } from "./Components/Features/TextAI/TextAI";
 
-import { TranslateWidget } from "./Components/Features/Translator/TranslationWidget";
-import { TextGenOptions } from "./Components/Features/Options/TextAIOptions.jsx";
-import { NavBar } from "./Components/UtilityComponents/NavBar";
+import { NavBar } from "./Components/utils/NavBar";
 import { useFeatureSelect } from "./store/store";
+import { SettingsContainer } from "./Components/Features/Settings/Settings";
+import { ImageGenButton } from "./Components/Features/ImageGen/ImageGenButton";
+import { TextGenButton } from "./Components/Features/TextAI/TextAIButton";
+import { ErrorDisplay } from "./Components/utils/ErrorDisplay";
+import { ApiChanger } from "./Components/utils/ChangeApi";
+import { useAPIStore } from "./store/store";
 
 function App() {
-  const textAndImage = {
-    textGen: <TextAI />,
-    imageGen: <ImageGen />,
+  const featureArray = {
+    textGen: [<TextAI />, <TextGenButton />],
+    imageGen: [<ImageGen />, <ImageGenButton />],
+    settings: [<SettingsContainer />],
   };
-
+  const { apiKey } = useAPIStore((state) => state);
   const currentFeature = useFeatureSelect((state) => state.currentFeature);
-  const currentFeatureComponent = textAndImage[currentFeature];
-
+  const [currentFeatureComponent, currentFeatureButton] =
+    featureArray[currentFeature];
+  const apiKeyNeeded = apiKey ? null : <ApiChanger />;
   return (
     <div className="App">
-      <div className="Outer-container">
-        <Bar />
-
-        <TranslateWidget />
+      <ErrorDisplay />
+      {apiKeyNeeded}
+      <div className="outer-container">
         <NavBar />
-        <div className="Main-container">
-          {currentFeatureComponent}
-          <TextGenOptions />
-        </div>
+        <div className="main-container">{currentFeatureComponent}</div>
       </div>
+      {currentFeatureButton}
     </div>
   );
 }
