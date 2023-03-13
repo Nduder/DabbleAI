@@ -13,8 +13,8 @@ export const TextAI = () => {
         placeholder="Ask me a question or give me a task! Ask me about travel suggestions, or to write poems about your favorite thing!"
         value={textParameters.prompt}
       />
-      <div key="what">
-        <p className="hx">{textResponse}</p>
+      <div key="response-container">
+        <p className="response-text">{textResponse}</p>
       </div>
     </div>
   );

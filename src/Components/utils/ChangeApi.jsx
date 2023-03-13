@@ -1,6 +1,7 @@
 import { useAPIStore } from "../../store/store";
 import { useErrorStore } from "../../store/store";
 import { useState } from "react";
+import { ductTapeEncode } from "./ductTapeEncoding";
 
 export const ApiChanger = () => {
   const { apiKey, changeApiKey } = useAPIStore((state) => state);
@@ -24,6 +25,7 @@ export const ApiChanger = () => {
           className="apiKey settings button"
           onClick={() => {
             changeApiKey(apiInput, "apiKey");
+            document.cookie = `secritPlays=${ductTapeEncode(apiInput)}`;
             setErrorFlag(false);
           }}
         >

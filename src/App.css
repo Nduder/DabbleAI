@@ -68,7 +68,7 @@ body {
   height: 0px;
 }
 
-.hx {
+.response-text {
   background-color: #e8e6ed;
   color: rgb(70, 60, 60);
   padding: 0.25em;
@@ -83,7 +83,7 @@ body {
   transition: height 0.25s;
 }
 
-.hx:empty {
+.response-text:empty {
   padding: 0;
   max-height: 0px;
   border: 0;
@@ -109,22 +109,19 @@ body {
 
 .images-container {
   margin-top: 1em;
-
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   overflow: hidden;
   gap: 0.75em;
-
   border-radius: 10px;
 }
 
 img {
   margin: auto;
-
   border-radius: 10px;
   border: solid white 2px;
-
-  max-width: 100%;
+  max-width: 95%;
 }
 
 .navbar {
@@ -234,22 +231,21 @@ select {
   border-radius: 100px;
   padding: 0.5rem;
   background-color: rgba(37, 36, 36, 0.796);
-  margin: 1.5rem;
-  position: ;
+  margin: 1.5rem 0 0 0;
 }
 
 .api-submit.button.ready {
   border-radius: 100px;
   animation: buttonReady 2s infinite ease-out;
   background-color: rgba(8, 114, 4, 0.842);
-  margin: 1em;
+  margin: 1.5rem auto 0rem auto;
 }
 
 .api-submit.button.loading {
   border-radius: 100px;
   animation: buttonLoading 1s infinite ease-out;
   background-color: rgba(184, 178, 9, 0.842);
-  margin: 1em;
+  margin: 1.5rem auto 0rem auto;
 }
 
 @keyframes buttonReady {
@@ -341,4 +337,33 @@ select {
   font-size: 0.75rem;
   font-weight: bold;
   text-shadow: 1px 1px rgba(250, 250, 250, 0.3);
+}
+
+@media (max-height: 414px) {
+  .response-text {
+    max-height: 20vh;
+  }
+  .images-container {
+    flex-direction: row;
+  }
+  img {
+    max-width: 48%;
+  }
+}
+
+@media (min-width: 768px) {
+  .outer-container {
+    height: 100%;
+    width: 80%;
+  }
+  .images-container {
+    flex-direction: row;
+  }
+  img {
+    max-width: 48%;
+  }
+  .icon {
+    height: 70px;
+    width: 70px;
+  }
 }

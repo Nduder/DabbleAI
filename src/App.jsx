@@ -11,6 +11,8 @@ import { TextGenButton } from "./Components/Features/TextAI/TextAIButton";
 import { ErrorDisplay } from "./Components/utils/ErrorDisplay";
 import { ApiChanger } from "./Components/utils/ChangeApi";
 import { useAPIStore } from "./store/store";
+import { useEffect } from "react";
+import { ductTapeDecode } from "./Components/utils/ductTapeEncoding";
 
 function App() {
   const featureArray = {
@@ -18,11 +20,26 @@ function App() {
     imageGen: [<ImageGen />, <ImageGenButton />],
     settings: [<SettingsContainer />],
   };
-  const { apiKey } = useAPIStore((state) => state);
+
+  const { apiKey, changeApiKey } = useAPIStore((state) => state);
   const currentFeature = useFeatureSelect((state) => state.currentFeature);
   const [currentFeatureComponent, currentFeatureButton] =
     featureArray[currentFeature];
   const apiKeyNeeded = apiKey ? null : <ApiChanger />;
+
+  useEffect(() => {
+    if (apiKey === undefined)
+      changeApiKey(
+        ductTapeDecode(
+          document.cookie
+            .split("; ")
+            .find((cookie) => cookie.startsWith("secritPlays="))
+            .split("=")[1]
+        ),
+        "apiKey"
+      );
+  }, []);
+
   return (
     <div className="App">
       <ErrorDisplay />

@@ -11,7 +11,7 @@ export const deepLTest = async (
     inputLanguage != "NONE" ? "&source_lang=" + inputLanguage : "";
   const targetLanguage =
     outputLanguage != "NONE" ? "&target_lang=" + outputLanguage : "";
-  // console.log(sourceLanguage, textContent, targetLanguage);
+
   //declare http request params to DeepL. Note Node client not required, just auth key
   const urlDeepL =
     "https://api-free.deepl.com/v2/translate?auth_key=" +
