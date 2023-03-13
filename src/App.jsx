@@ -28,7 +28,7 @@ function App() {
   const apiKeyNeeded = apiKey ? null : <ApiChanger />;
 
   useEffect(() => {
-    if (apiKey === undefined)
+    if (apiKey === undefined && document.cookie !== "")
       changeApiKey(
         ductTapeDecode(
           document.cookie
